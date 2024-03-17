@@ -5,21 +5,32 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,//可选）如果您希望像导入JavaScript模块那样导入默认导出的TypeScript模块，则启用此选项
 
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+		/* Bundler mode */
+    "moduleResolution": "Node",// 对于TypeScript >= 4.7，使用"nodenext"以支持import语句中的文件扩展名
     "noEmit": true,
+		"emitDeclarationOnly": false,
+    "resolveJsonModule": true,
+    "isolatedModules": true,// （可选）如果需要导入JSON文件，请启用此选项
     "jsx": "react-jsx",
-
+		
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+		"allowImportingTsExtensions":true,
+		
+		// 解析非相对模块名的基准目录
+		"baseUrl": "./",
+		// 模块名到基于 baseUrl的路径映射的列表。
+		"paths": {
+			"@": ["src"],
+			"@/*": ["src/*"]
+		}
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "vite.config.ts"],
+	"exclude": ["node_modules", "dist", "**/*.js"]
 }
